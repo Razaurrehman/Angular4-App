@@ -1,0 +1,29 @@
+<div class="container">
+    <form #regForm="ngForm" (ngSubmit)="onSubmit(regForm)">
+        <div class="form-group">
+            <label for="firstName">firstName</label>
+            <input required minlength="3" maxlength="9" ngControl="firstName" pattern="razaaa" name="firstName" ngModel id="firstName" #firstName="ngModel" type="text" class="form-control">
+            <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+                <div *ngIf="firstName.errors.required">FirstName is required</div>
+                <div *ngIf="firstName.errors.minlength">FirstName length is {{firstName.errors.minlength.requiredLength}}</div>
+                <div *ngIf="firstName.errors.pattern">FirstName pattern is not match</div>
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <label for="comment">Comment</label>
+            <textarea required minlength="10" maxlength="100" ngControl="comment" name="comment" ngModel id="comment" #comment="ngModel" cols="30" rows="10" class="form-control"></textarea>
+            <div class="alert alert-danger" *ngIf="comment.touched && !comment.valid">
+                <div *ngIf="comment.errors.required">FirstName is required</div>
+                <div *ngIf="comment.errors.minlength">FirstName length is 10</div>
+                <div *ngIf="comment.errors.maxlength">FirstName length is 100</div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" [disabled]="!regForm.valid">Submit</button>
+
+    </form>
+</div>
